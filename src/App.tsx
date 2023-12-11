@@ -11,7 +11,7 @@ function App() {
   const [showWeatherDetails, setShowWeatherDetails] = useState(false);
   const [showErrorPage, setShowErrorPage] = useState(false);
 
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=9cd4b8f7032d45aef4ac47907d63d924`;
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=9cd4b8f7032d45aef4ac47907d63d924&units=metric`;
 
   const weatherLocation = () => {
     axios.get(url)
@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="container" id="wrapper">
       <div className="container-fluid position-absolute top-0 start-50 translate-middle-x col-md-9 col-sm-5 col-xs-4" id="current-weather">
-        <div className="row align-items-center">
+        <div className="row justify-content-center">
           <div className="col-md-11 col-sm-10 col-xs-5">
             <input className="form-control border-secondary rounded-pill pr-5" type="text" placeholder='Enter Location' id="example-search-input2" onChange={event => setLocation(event.target.value)} />
           </div>

@@ -6,7 +6,7 @@ export default function WeatherDetails({ Cname, temp, humid, speed }: { Cname: s
                     <div className="card extraa" >
                         <div className="card-body p-4">
                             <div className="d-flex flex-column text-center mt-5 mb-4">
-                                <h6 className="display-4 mb-0 font-weight-bold" style={{ color: "#1C2331" }}>{temp}°F</h6>
+                                <h6 className="display-4 mb-0 font-weight-bold" style={{ color: "#1C2331" }}>{temp}°C</h6>
                                 <span className="small" style={{ color: "#868B94" }}>{Cname}</span>
                             </div>
                             <div className="d-flex align-items-center">

@@ -12,7 +12,7 @@ export default function ErrorPage() {
                 <h6 className="display-4 mb-0 font-weight-bold" style={{ color: "#1C2331" }}>
                   <img className='imgsize' src={waitGif} alt="wait hora" />
                 </h6>
-                <span className="medium my-2" style={{ color: "#868B94" }}>CHECK THE COUNTRY NAME AGAIN</span>
+                <span className="large my-3" style={{ color: "#868B94" }}>CHECK THE CITY NAME AGAIN</span>
               </div>
             </div>
           </div>
