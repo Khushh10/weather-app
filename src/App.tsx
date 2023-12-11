@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './App.css';
 import DaysForecast from './CommonComponents/DaysForecast';
 import WeatherDetails from './CommonComponents/WeatherDetails';
@@ -10,7 +10,6 @@ function App() {
   const [location, setLocation] = useState('');
   const [showWeatherDetails, setShowWeatherDetails] = useState(false);
   const [showErrorPage, setShowErrorPage] = useState(false);
-
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=9cd4b8f7032d45aef4ac47907d63d924&units=metric`;
 
   const weatherLocation = () => {
@@ -26,6 +25,22 @@ function App() {
         setShowErrorPage(true);
       })
   }
+
+  function getlocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    }
+
+  }
+
+  function showPosition(position: any) {
+    console.log(position);
+    // document.getElementById("demo").innerHTML =
+    //   "Latitude: " + position.coords.latitude + "<br>" +
+    //   "Longitude: " + position.coords.longitude;
+  }
+
+  getlocation();
 
   return (
     <div className="container" id="wrapper">
