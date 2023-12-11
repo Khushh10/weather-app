@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DaysForecast from './CommonComponents/DaysForecast';
 import WeatherDetails from './CommonComponents/WeatherDetails';
@@ -30,18 +30,19 @@ function App() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     }
-
   }
 
   function showPosition(position: any) {
-    console.log(position);
-    // document.getElementById("demo").innerHTML =
-    //   "Latitude: " + position.coords.latitude + "<br>" +
-    //   "Longitude: " + position.coords.longitude;
+    // console.log(position);
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+    const curUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=9cd4b8f7032d45aef4ac47907d63d924`
+    console.log(latitude);
+    console.log(longitude);
   }
 
-  getlocation();
-
+  useEffect(getlocation, []);
+  
   return (
     <div className="container" id="wrapper">
       <div className="container-fluid position-absolute top-0 start-50 translate-middle-x col-md-9 col-sm-5 col-xs-4" id="current-weather">
