@@ -5,6 +5,8 @@ const instance = axios.create({
     params: {
         appid: '9cd4b8f7032d45aef4ac47907d63d924',
         units: 'metric',
+        cnt: '4',
+        id: '524901',
     },
 });
 
