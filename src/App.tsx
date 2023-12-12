@@ -16,26 +16,20 @@ function App() {
   var longitude = '';
   var latitude = '';
 
-  function weatherLocation() {
-    instance.get('/weather', {
-      params: {
-        q: location,
-        lon: longitude,
-        lat: latitude,
-      },
-    })
-      .then((response) => {
-        // console.log(response.data);
-        setData(response.data);
-        setShowWeatherDetails(true);
-        setShowErrorPage(false);
-        setShowCurPosition(false);
-      })
-      .catch((error) => {
-        setShowWeatherDetails(false);
-        setShowErrorPage(true);
-        setShowCurPosition(false);
-      })
+  const weatherLocation = async () => {
+    try {
+      const response = await instance.get('/weather', { params: { q: location, lon: longitude, lat: latitude, }, })
+      setData(response.data);
+      setShowWeatherDetails(true);
+      setShowErrorPage(false);
+      setShowCurPosition(false);
+    }
+
+    catch (error) {
+      setShowWeatherDetails(false);
+      setShowErrorPage(true);
+      setShowCurPosition(false);
+    }
   }
 
   function defaultWeather() {

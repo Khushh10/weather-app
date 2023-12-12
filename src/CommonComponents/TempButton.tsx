@@ -6,7 +6,7 @@ function TempButtonF({ onFarClick, temp, City }: Readonly<{ onFarClick: MouseEve
             <h6 className="display-4 mb-0 font-weight-bold" style={{ color: "white" }}>{temp as string}°C</h6>
             <button
                 className="btn text-white border-0 rounded-pill ml-n5 my-2" type="button">
-                <h5 onClick={onFarClick}><i className="fa fa-search"> </i> CONVERT TO FARHENITE</h5>
+                <h5 onClick={onFarClick}><i className="fa-solid fa-shuffle" style={{color: "#ffffff"}}></i> CONVERT TO FARHENITE</h5>
             </button>
             <span className="small" style={{ color: "white" }}>{City}</span>
         </div >

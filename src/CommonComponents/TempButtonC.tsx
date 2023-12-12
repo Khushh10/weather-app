@@ -6,7 +6,7 @@ function TempButtonC({ onCelClick, temp, City }: Readonly<{ onCelClick: MouseEve
             <h6 className="display-4 mb-0 font-weight-bold" style={{ color: "white" }}>{temp as string}°F</h6>
             <button
                 className="btn text-white border-0 rounded-pill my-2" type="button">
-                <h5 onClick={onCelClick}><i className="fa fa-search"> </i> CONVERT TO CELCIUS</h5>
+                <h5 onClick={onCelClick}><i className="fa-solid fa-shuffle" style={{ color: "#ffffff" }}></i> CONVERT TO CELCIUS</h5>
             </button>
             <span className="small" style={{ color: "white" }}>{City}</span>
         </div>
