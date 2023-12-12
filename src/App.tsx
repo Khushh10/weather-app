@@ -1,5 +1,5 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import instance from './Services/instance';
+import { useState } from 'react';
 import './App.css';
 import DaysForecast from './CommonComponents/DaysForecast';
 import WeatherDetails from './CommonComponents/WeatherDetails';
@@ -10,10 +10,13 @@ function App() {
   const [location, setLocation] = useState('');
   const [showWeatherDetails, setShowWeatherDetails] = useState(false);
   const [showErrorPage, setShowErrorPage] = useState(false);
-  const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=9cd4b8f7032d45aef4ac47907d63d924&units=metric`;
 
   const weatherLocation = () => {
-    axios.get(url)
+    instance.get('/weather', {
+      params: {
+        q: location,
+      },
+    })
       .then((response) => {
         console.log(response.data);
         setData(response.data);
@@ -33,16 +36,11 @@ function App() {
   }
 
   function showPosition(position: any) {
-    // console.log(position);
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
-    const curUrl = `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=9cd4b8f7032d45aef4ac47907d63d924`
-    console.log(latitude);
-    console.log(longitude);
+    console.log(position);
   }
 
-  useEffect(getlocation, []);
-  
+  getlocation();
+
   return (
     <div className="container" id="wrapper">
       <div className="container-fluid position-absolute top-0 start-50 translate-middle-x col-md-9 col-sm-5 col-xs-4" id="current-weather">
@@ -60,8 +58,8 @@ function App() {
 
       {showWeatherDetails && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />}
       {showErrorPage && <ErrorPage />}
+      {showWeatherDetails && <DaysForecast value={location} />}
 
-      <DaysForecast value={location} />
     </div>
   );
 }
