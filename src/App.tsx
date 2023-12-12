@@ -1,5 +1,5 @@
 import instance from './Services/instance';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DaysForecast from './CommonComponents/DaysForecast';
 import WeatherDetails from './CommonComponents/WeatherDetails';
@@ -11,36 +11,57 @@ function App() {
   const [location, setLocation] = useState('');
   const [showWeatherDetails, setShowWeatherDetails] = useState(false);
   const [showErrorPage, setShowErrorPage] = useState(false);
+  const [showCurPosition, setShowCurPosition] = useState(false);
+  const [showLocError, setShowLocError] = useState(false);
+  var longitude = '';
+  var latitude = '';
 
-  const weatherLocation = () => {
+  function weatherLocation() {
     instance.get('/weather', {
       params: {
         q: location,
+        lon: longitude,
+        lat: latitude,
       },
     })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setData(response.data);
         setShowWeatherDetails(true);
         setShowErrorPage(false);
+        setShowCurPosition(false);
       })
       .catch((error) => {
         setShowWeatherDetails(false);
         setShowErrorPage(true);
+        setShowCurPosition(false);
       })
+  }
+
+  function defaultWeather() {
+    weatherLocation();
+  }
+
+  function showPosition(position: any) {
+    // console.log("i'm tracking you!");
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    setShowCurPosition(true);
+    defaultWeather();
+  }
+
+  function showError() {
+    // console.log("you denied me :-(");
+    setShowLocError(true);
   }
 
   function getlocation() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
     }
   }
 
-  function showPosition(position: any) {
-    console.log(position);
-  }
-
-  getlocation();
+  useEffect(getlocation, []);
 
   return (
     <div className="container" id="wrapper">
@@ -57,11 +78,11 @@ function App() {
         </div>
       </div>
 
-      {/* {showWeatherDetails && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />} */}
-      {/* <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} /> */}
-      <NoLocationAccess/>
+      {showWeatherDetails && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />}
+      {showCurPosition && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />}
+      {showLocError && <NoLocationAccess />}
       {showErrorPage && <ErrorPage />}
-      {showWeatherDetails && <DaysForecast value={location}/>}
+      {showWeatherDetails && <DaysForecast value={location} />}
 
     </div>
   );
