@@ -1,7 +1,7 @@
 import axios from "../Services/instance";
 import { useState } from "react";
 
-export default function DaysForecast({ value }: { value: string }) {
+function DaysForecast({ value }: { value: string }) {
     const [hdata, setHData] = useState<{ main: { temp: number; }; }[]>([]);
     const weatherLocation = () => {
         axios.get<{ list: { main: { temp: number; }; }[]; }>('/forecast', {
@@ -35,3 +35,5 @@ export default function DaysForecast({ value }: { value: string }) {
         </div>
     );
 }
+
+export default DaysForecast;

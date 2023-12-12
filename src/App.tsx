@@ -4,6 +4,7 @@ import './App.css';
 import DaysForecast from './CommonComponents/DaysForecast';
 import WeatherDetails from './CommonComponents/WeatherDetails';
 import ErrorPage from './CommonComponents/ErrorPage';
+import NoLocationAccess from './CommonComponents/NoLocationAccess';
 
 function App() {
   const [data, setData] = useState({ name: "", main: { temp: "", humidity: "" }, weather: { main: "" }, wind: { speed: "" } });
@@ -57,7 +58,8 @@ function App() {
       </div>
 
       {/* {showWeatherDetails && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />} */}
-      <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />
+      {/* <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} /> */}
+      <NoLocationAccess/>
       {showErrorPage && <ErrorPage />}
       {showWeatherDetails && <DaysForecast value={location}/>}
 

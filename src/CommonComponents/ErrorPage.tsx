@@ -1,7 +1,6 @@
-import React from 'react';
+import waitGif from '../images/waiting.gif';
 
-export default function ErrorPage() {
-  const waitGif = 'https://i.gifer.com/o26.gif';
+function ErrorPage() {
   return (
     <div className="container py-5 h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
@@ -21,3 +20,5 @@ export default function ErrorPage() {
     </div>
   );
 }
+
+export default ErrorPage;
