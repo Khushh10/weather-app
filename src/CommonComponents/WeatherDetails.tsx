@@ -39,9 +39,6 @@ export default function WeatherDetails({ Cname, temp, humid, speed }: Readonly<{
                                     <div><i className="fas fa-tint fa-fw"></i> <span className="ms-1">
                                         {humid}%</span>
                                     </div>
-                                    <div><i className="fas fa-sun fa-fw"></i> <span className="ms-1">
-                                        0.2h </span>
-                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -88,6 +88,12 @@ body {
   background-color: rgba(0, 0, 0, 0.541);
 }
 
+.days-box {
+  color: white;
+  border-radius: 35px;
+  background-color: rgba(0, 0, 0, 0.462);
+}
+
 .imgsize {
   height: 200px;
   width: 200px;
