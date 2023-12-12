@@ -61,7 +61,7 @@ function App() {
       {showWeatherDetails && <WeatherDetails Cname={data.name} temp={data.main.temp} humid={data.main.humidity} speed={data.wind.speed} />}
       {showErrorPage && <ErrorPage />}
 
-      {/* <DaysForecast value={location} /> */}
+      <DaysForecast value={location} />
     </div>
   );
 }
