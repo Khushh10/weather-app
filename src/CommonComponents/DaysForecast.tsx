@@ -1,13 +1,13 @@
 import axios from "../Services/instance";
 import { useState } from "react";
 
-function DaysForecast({ value }: { value: string }) {
-    const [hdata, setHData] = useState<{ main: { temp: number; }, dt_txt: string }[]>([]);
+function DaysForecast({ value }: Readonly<{ value: string }>) {
+    const [hdata, setHdata] = useState<{ main: { temp: number; }, dt_txt: string }[]>([]);
 
     const weatherLocation = async () => {
         try {
-            const res = await axios.get('/forecast', { params: { q: value, }, });
-            setHData(res.data.list);
+            const res = await axios.get<{ list: { main: { temp: number; }, dt_txt: string; }[] }>('/forecast', { params: { q: value, }, });
+            setHdata(res.data.list);
         }
         catch (error) {
             console.log("ERROR AA RHA HAII!!");

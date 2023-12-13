@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import TempButtonF from "./TempButton";
 import TempButtonC from "./TempButtonC";
 
-export default function WeatherDetails({ Cname, temp, humid, speed }: Readonly<{ Cname: string, temp: unknown, humid: string, speed: string }>) {
-    const [temperature, setTemperature] = useState(temp);
+function WeatherDetails({ Cname, temp, humid, speed }: Readonly<{ Cname: string, temp: unknown, humid: string, speed: string }>) {
+const [temperature, setTemperature] = useState(temp);
     const [showTempFar, setShowTempFar] = useState(true);
     const [showTempCel, setShowTempCel] = useState(false);
     const [showDay, setShowDay] = useState(false);
@@ -28,14 +28,11 @@ export default function WeatherDetails({ Cname, temp, humid, speed }: Readonly<{
     const decideTime = () => {
         var today = new Date();
         var time = today.getHours();
-        // console.log(time);
-        if (time > 18 && time < 6) {
-            // console.log("night");
+
+        if (time >= 18 || time < 6) {
             setShowDay(false);
             setShowNight(true);
-        }
-        else{
-            // console.log("Day");
+        } else {
             setShowDay(true);
             setShowNight(false);
         }
@@ -70,3 +67,5 @@ export default function WeatherDetails({ Cname, temp, humid, speed }: Readonly<{
         </div>
     );
 }
+
+export default WeatherDetails;
