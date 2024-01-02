@@ -36,16 +36,12 @@ function App() {
     }
   }
 
-  function defaultWeather() {
-    weatherLocation();
-  }
-
   function showPosition(position: GeolocationPosition) {
     // console.log("i'm tracking you!");
     latitude = position.coords.latitude;
     longitude = position.coords.longitude;
     setShowCurPosition(true);
-    defaultWeather();
+    weatherLocation();
   }
 
   function showError() {

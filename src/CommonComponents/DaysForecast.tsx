@@ -3,7 +3,9 @@ import { useState } from "react";
 
 function DaysForecast({ value }: Readonly<{ value: string }>) {
     const [hdata, setHdata] = useState<{ main: { temp: number; }, dt_txt: string }[]>([]);
-
+    // if (value === '') {
+    //     value = 'Ratanada';
+    // }
     const weatherLocation = async () => {
         try {
             const res = await axios.get<{ list: { main: { temp: number; }, dt_txt: string; }[] }>('/forecast', { params: { q: value, }, });
